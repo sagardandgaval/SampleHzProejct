@@ -1,0 +1,11 @@
+# Common IDE settings files etc to ignore
+.idea
+.user
+.gradle
+.settings
+*.impl
+
+# Build Artifacts
+/out/
+/target/
+/build/
