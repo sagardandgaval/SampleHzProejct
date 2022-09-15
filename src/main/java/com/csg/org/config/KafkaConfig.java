@@ -6,11 +6,13 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.core.*;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@EnableKafka
 @Configuration
 public class KafkaConfig {
 
@@ -18,7 +20,7 @@ public class KafkaConfig {
     public ProducerFactory<String, Object> stringProducerFactory() {
         Map<String, Object> configProperties = new HashMap<>();
 
-        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1");
+        configProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         configProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
@@ -35,7 +37,7 @@ public class KafkaConfig {
     public ConsumerFactory<String, Object> stringConsumerFactory() {
         Map<String, Object> configProperties = new HashMap<>();
 
-        configProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "");
+        configProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
         configProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configProperties.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
